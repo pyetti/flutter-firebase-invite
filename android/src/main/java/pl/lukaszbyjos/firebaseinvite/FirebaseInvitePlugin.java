@@ -40,15 +40,6 @@ public class FirebaseInvitePlugin implements MethodCallHandler,
         } else {
             result.notImplemented();
         }
-
-//        switch (call.method) {
-//            case "onInviteClicked":
-//                onInviteClicked(call, result);
-//                break;
-//            default:
-//                result.notImplemented();
-//                break;
-//        }
     }
 
     private void onInviteClicked(MethodCall call, Result result) {
@@ -62,6 +53,9 @@ public class FirebaseInvitePlugin implements MethodCallHandler,
         String analytics_id = args.get("analytics_id");
         IntentBuilder intentBuilder = new IntentBuilder(args.get("title"))
             .setMessage(args.get("message"))
+            .setOtherPlatformsTargetApplication(
+                AppInviteInvitation.IntentBuilder.PlatformMode.PROJECT_PLATFORM_IOS,
+                args.get("iosAppClientId"))
             .setGoogleAnalyticsTrackingId(analytics_id);
         if (email_html_content != null) {
             intentBuilder.setEmailHtmlContent(email_html_content);

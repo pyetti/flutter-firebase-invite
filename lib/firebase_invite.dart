@@ -16,7 +16,8 @@ class FirebaseInvite {
       String customImageUri,
       String emailHtmlContent,
       String emailSubject,
-      String analyticsId}) async {
+      String analyticsId,
+      String iosAppClientId}) async {
     Map<String, String> args = {};
     args.putIfAbsent("title", () => title);
     args.putIfAbsent("message", () => message);
@@ -26,6 +27,7 @@ class FirebaseInvite {
     args.putIfAbsent("email_html_content", () => emailHtmlContent);
     args.putIfAbsent("email_subject", () => emailSubject);
     args.putIfAbsent("analytics_id", () => analyticsId);
+    args.putIfAbsent("analytics_id", () => iosAppClientId);
     Map<String, Map<String, String>> arguments = {'arguments': args};
     await _channel.invokeMethod("onInviteClicked", arguments);
   }
